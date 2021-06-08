@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        ul {
+            list-style-type: none;
+        }
+        input{
+            border:0px;
+            background:none;
+            outline: none;
+            color:white;
+        }
+        /*清除浮动*/
+        .clear:after {          
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        #top{
+            position:absolute;
+            background:black;
+            width:100%;     
+            height:50px;
+            display: flex;  
+        }
+        #top>div{      
+            margin:0 auto;
+        }
+        .top-first{
+            margin-left:20px;       
+        }
+        .top-second>ul li{      
+            line-height:10px;
+            margin:20px;
+            float:left;
+        }
+        .top-second a{
+            color:white;
+        }
+        .top-third a{
+             color:white;
+        }
+        .top-second a:hover{
+            color:orange;
+        }
+        .top-third a:hover{
+            color:orange;
+        }
+        .top-third>ul li{
+            line-height:10px;
+            margin:20px;
+            float:left;
+            font-size:10px;
+            opacity:0.8;
+        }
+        .top-fourth{
+            transform:translateX(-36px);
+        }
+        .search{
+            transform: translateY(-30px) translateX(5px);  
+        }
+        .top-fourth>img{
+            margin-top:10px;
+        }
+        .top-third div{
+            background:url( images/8x7cejPCVRaEBEDHg7ezDs.png);
+            background-position:-230px 221px ;
+            width:36px;
+            height:36px;
+            float:left;
+            transform:translateX(13px) translateY(-15px);
+        }
+        .musicControll .play {
+            background:url( images/ft4wYB2sBrTzcGpwteSquz.jpg);
+	        width: 40px;
+	        height: 40px;
+	        background-position: -110px 88px;
+            transform:translateX(-110px) translateY(43px);
+        }
+        .musicControll .play:hover {
+            background:url( images/ft4wYB2sBrTzcGpwteSquz.jpg);
+	        width: 40px;
+	        height: 40px;
+	        background-position: -110px 88px;
+        }
+        #wp_mute{
+            width:20px;
+            height:16px;
+            background:url( images/ft4wYB2sBrTzcGpwteSquz.jpg);
+            background-position:-44px 88px;
+            transform:translate(60px,-18px);
+        }
+        .playerRight{
+            position:relative;
+            float:right;
+            transform:translate(20px,-60px);
+        }
+        .musicControll div{
+            cursor:pointer;
+        }
+        .musicControll{
+            width:57px;
+            height:50px;
+        }
+        .playerMid #prograssBar {
+	        float: left;
+	        position: relative;
+	        width: 100%;
+	        height: 4px;
+	        border:1px solid #999999;
+	        border-radius: 30px;
+	        background:#999999;
+	        margin: 10px 10px 0 0;
+	        display: inline;
+                }
+        .playerMid .prograssBar {
+	        height: 4px;
+	        background: #ffcd2d;
+        }
+        .playerMid #wp_bufBar {
+	        width: 0px;
+	        height: 4px;
+        }
+        .playerMid #wp_processBtn {
+	        width: 10px;
+	        height: 10px;
+	        background: url( images/8x7cejPCVRaEBEDHg7ezDs.png) 0 -128px;
+	        position: absolute;
+	        top: -3px;
+        }
+        .playerMid {
+	        width: 300px;
+	        height: 60px;
+	        overflow: hidden;
+	        position: relative;
+            transform:translateX(-50px);
+        }
+        .playerRight p{
+            color:#999999;
+        }
+         #player{
+            float:right;
+            padding-right:120px;
+            margin-top:70px;
+        }
+        #disc{
+            width:190px;
+            height:190px;
+            border-radius:50%;
+            border:1px solid #999999;
+        }
+        #disc>img{
+            position: absolute;
+            width:180px;
+            height:180px;
+            border-radius:50%;
+            overflow: hidden;
+            transform:translateX(5px) translateY(5px);
+            z-index: 1;
+        }       
+         .circle-first{
+            position: relative;
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            border:1px solid #999999;
+            z-index:2;
+            margin-top:70px;
+            margin-left:70px;
+	
+        }
+        .circle-second{
+            position: relative;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            border:1px solid #999999;
+            background:white;
+            z-index:2;
+            margin-top:-30px;
+            margin-left:90px;
+        }       
+         @keyframes img_rotate{
+            from{
+        transform:rotate(0deg);
+            }to{
+        transform:rotate(360deg);
+            }
+        } 
+        #disc{
+            animation:img_rotate 6s linear infinite;
+        }
+        .playerBottom{
+            width:220px;
+            height:70px;
+    
+        }
+        .playerBottom #bg{
+            background: url( images/ft4wYB2sBrTzcGpwteSquz.jpg)0 45px;
+            width:200px;
+            height:45px;
+        }
+        .bg_download{
+            transform:translate(50px,16px);
+            color:black;
+        }
+        .playerBottom #download{
+            background: url( images/ft4wYB2sBrTzcGpwteSquz.jpg)0 0px;
+            width:18px;
+            height:18px;
+            margin-top:-28px;
+            margin-left:20px;
+        }
+        .lyrics{
+            width:50%;
+            height:500px;
+            transform:translateY(30px);
+        }
+        .lyrics-top{
+            margin-top:80px;
+            margin-left:190px;
+        }
+        .lyrics-top ul li{
+            float:left;
+            margin:20px;
+            text-align:center;
+        }
+        .lyrics-top a{
+            color:orange;
+        }
+        .lyrics-top div{
+            background:url( images/bbHRbrtQkXjFLRSChCcxPi.jpg);
+            width:14px;
+            height:14px;
+            float:left;
+            transform:translate(-5px,3px);
+        }
+        .lyrics-top1{
+            text-align:center;
+            margin-top:150px;
+                border-bottom: 0.5px solid #999999;
+            margin-left:50px;
+        }
+        .lyrics-top1 p{
+            margin:0 auto;
+        }
+        .content{
+            line-height:30px;
+            text-align:center;
+            font-size:15px;
+        }  
+        .pp1 p{
+            background-color: #DBDBDB;
+            padding: 5px 8px;
+            display: inline-block;
+            border-radius: 10px;
+            margin:10px 0 10px 10px;
+            position: relative;
+    
+        }
+        .pp1 p::after{
+            content: '';
+            border: 8px solid #ffffff00;
+            border-right: 8px solid #DBDBDB;
+            position: absolute;
+            top: 6px;
+            left: -16px;
+        }
+        .bubbleImage{   
+                width:60px;
+            height:60px;
+            margin-top:5px;
+        }
+        .bubble div{
+            float:left;
+        }
+        .bubble{
+        transform:translateX(-70px);
+        }
+        #add_button{
+            transform:translateY(40px);
+            color:white;
+            background-color: orange;
+            border:none;
+            width:80px;
+            cursor:pointer;
+            position: relative;
+            margin-left:-80px;
+        }
+        #note_text{
+            resize: none;
+            width:600px;
+            height:100px;
+            border-color: #DDD;
+            margin-top:30px;
+            margin-left:40px;
+        }
+        .bottom-second{
+            width:800px;
+            border-top: 1px solid #DDD;
+        }
+        .bottom{
+            position:realative;
+            margin-left:25%;
+            margin-top:100px;
+        }
+        .bottom-first  p span{
+            font-size: 10px;
+        }
+        .bottom-font{
+            font-size:13px;
+            margin-top:23px;
+            margin-left:470px;
+        }
+        .sticky0{
+            margin-left:70px;
+            transform:translateY(10px);
+        }
+        .sticky0 a{
+            color:orange;
+        }
+        .sticky2{
+            margin-left:700px;
+            transform:translateY(-5px);
+        }
+        .page li{
+            margin:3px;
+            float:left;
+            list-style:none;
+        }
+        .page li a{       
+            border:solid 1px #DDDDDD;
+            border-radius:50%;
+            background:#DDDDDD;
+        }
+        .page-first{
+            width:25px;
+            height:25px;
+            color:white;
+            text-align: center;
+            border:solid 1px #DDDDDD;
+            border-radius:50%;  
+            background:orange;
+        }
+        .page a:link,
+        .page a:visited {
+            color:black;
+            float:left;
+            padding:3px 6px;
+            text-decoration:none;
+        }
+        .page a:hover{
+            color:white;
+            background:orange;
+        }
+        .fenye{
+            position:relative;
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+        <div class="top-first"><img src="images/EBbGwpYnuxzNj2n4pu4QWG.jpg" alt="logo"></div>
+        <div class="top-second">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">榜单</a></li>
+                <li><a href="#">歌手</a></li>
+                <li><a href="#">下载客户端</a></li>
+            </ul>
+        </div>
+        <div class="top-third">
+            <ul>
+                <li><a href="#"><div></div>美女秀</a></li>
+                <li><a href="#"><div></div>酷我耳机</a></li>
+                <li><a href="#"><div></div>VIP会员</a></li>
+                <li><a href="#"><div></div>i听</a></li>
+                <li><a href="#">更多服务</a></li>
+                <li><a href="#">登录</a></li>
+                <li><a href="#">^</a></li>
+            </ul> 
+        </div>
+        <div class="top-fourth">
+            <img src="images/hRzX3n2eFHEyPd93FriVox.png" alt="search">
+            <div class="search"><input type="search" name="search" placeholder="找到好音乐" "></div>
+        </div>
+    </div>
+    <div class="medium">
+    <div id="player">
+        <audio autoplay="autoplay" id="mymusic">
+            <source src="123.mp3" type="audio/mp3"></audio>
+            <div id="disc">
+                <img  src="images/nJA5uhS7NxNWUhVyAzNN5q.jpg"/>
+                <div class="circle-first"></div>
+                <div class="circle-second"></div>
+            </div>
+            <div id="playerBox">
+              <div class="player">       
+                  <div class="musicControll">
+                    <div class="play" id="wp_playBtn"></div>           
+                  </div>   
+                <div class="playerMid">
+                  <div id="prograssBar">
+                    <div id="wp_bufBar">
+                      <div class="prograssBar" id="wp_processBar"></div>
+                      <a href="##" class="schedule_btn" id="wp_processBtn" style="left: 0;"></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="playerRight">
+                  <p id="wp_playTime" class="opacity">00:00</p>
+                    <div class="sound" id="wp_mute"></div>        
+                </div>
+                <div class="playerBottom">
+                    <a href="##"/><div id="bg"><p class="bg_download">免费下载这首歌</p></div>
+                    <div id="download"></div></a>
+                </div>
+                <div class="bubble">
+                    <div class="bubbleImage">
+                        <img src="images/fDRw8gm9XazHuqiccYQiyb.jpg"/>
+                    </div>
+                    <div class="pp1">
+                        <p>郭子仪——H5班
+                       <br/>喜羊羊与灰太狼<a href="##" style="color:blue;">&nbsp;&nbsp;&nbsp;去现场></a></p>
+                    </div>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="lyrics">
+        <p style="font-size:30px;text-align:center;transform: translateY(50px);">喜羊羊</p>
+        <div class="lyrics-top">
+            <ul>
+                <li>专辑：<a href="#">儿童歌曲</a></li>
+                <li>歌手：<a href="#">华语群星</a></li>
+                <li>分享<a href="#"></a></li>
+                <li><div></div><a href="#">评论</a></li>
+            </ul>         
+        </div>
+        <div class="lyrics-top1"><p style="font-size:10px;">上传时间：2015-10-02&nbsp;歌曲来源：网络</p></div> 
+        <div class="content">
+            <p>在所有天气&nbsp;拥有叫人&nbsp;大笑的力量</p>
+            <p>虽然我只是羊</p>
+            <p>虽然我只是羊</p>
+            <p>喜羊羊&nbsp;美羊羊&nbsp;懒羊羊&nbsp;沸羊羊</p>
+            <p>慢羊羊&nbsp;软绵绵&nbsp;红太狼&nbsp;灰太狼</p>
+        </div>
+    </div>
+</div>
+    <div class="bottom">
+    <div class="bottom-first">
+        <p class="tip">评论&emsp;&emsp;&emsp;<span id="counter1" style="font-size:12px;">0</span>条评论</p>
+    </div>
+    <br/>
+    <div class="bottom-second">
+        <img src="images/fDRw8gm9XazHuqiccYQiyb.jpg" style="transform: translateY(-40px);">   
+		<textarea id="note_text" placeholder="分享你的音乐见解"  onkeydown="countChar('note_text','counter');" onkeyup="countChar('note_text','counter');"></textarea>
+		<input type="button" id="add_button" value="评论" />	
+        <div class="bottom-font">已经输入<span id="counter">0</span>字<br></div>
+    </div>
+    <p>精彩评论</p>
+        <div class="pinglun" id="pinglun1">	
+		<ul id="stickies" style="list-style-type: none;">
+    		<li>
+                <div class="sticky0">匿名网友</div>
+                <div class="sticky2" >分享</div>
+				<span class="sticky">我的内容</span>
+                <span class="sticky1"><a href="##">删除</a><a href="##">👍</a><a href="##">回复</a></span>
+			</li>     
+		</ul>
+        </div>	
+    </div>
+    <div class="fenye">
+        <ul class="page">
+            <li><div><a href="##"><</a></div></li>
+            <li class="page-first">1</li>
+            <li><a href="##">2</a></li>
+            <li><a href="##">3</a></li>
+            <li>…</li>
+            <li><a href="##">17</a></li>
+            <li class="next"><a href="##">></a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    var t = new Date();
+    var year = t.getFullYear();
+    var month = t.getMonth()+1;
+    var day = t.getDate();
+    var week = t.getDay();
+    var hour = t.getHours();
+    var minute = t.getMinutes();
+    var seconds = t.getSeconds();
+    var showTime = year+"-"+month+"-"+day+" "+hour+((minute<10)?":0":":")+minute+((seconds<10)?":0":":")+seconds;
+	var noteText = document.getElementById("note_text");
+	var addBtn = document.getElementById("add_button");
+	var stickies = document.getElementById("stickies");
+    var counter = document.getElementById("counter");
+    var counter1 = document.getElementById("counter1");
+    var pinglun = document.getElementById("pinglun1");
+    function countChar(textareaNamezzjs,spanName){
+        document.getElementById(spanName).innerHTML=document.getElementById(textareaNamezzjs).value.length;
+        } 
+        nowtime();
+        function nowtime() {setInterval(function () {
+			t = new Date();
+        	year = t.getFullYear();
+         	month = t.getMonth()+1;
+         	day = t.getDate();
+        	week = t.getDay();
+         	hour = t.getHours();
+        	minute = t.getMinutes();
+		 	seconds = t.getSeconds();
+         	showTime = year+"-"+month+"-"+day+" "+hour+((minute<10)?":0":":")+minute+((seconds<10)?":0":":")+seconds;
+		},1000)}   
+		function saveNote(noteContent) {
+			var noteList = localStorage['noteList'];
+			if(noteList == null || noteList == "") {
+				noteList = '[]';
+			}
+			noteList = JSON.parse(noteList);
+			var noteObj = {
+				noteId: noteList.length,
+				noteContent: noteContent,
+                Time:showTime,
+			}
+			noteList.push(noteObj);
+			noteList = JSON.stringify(noteList);
+			localStorage["noteList"] = noteList;
+		}
+		function getNotes() {
+			stickies.innerHTML = "";
+			var noteList = localStorage['noteList'];
+			noteList = JSON.parse(noteList);
+			for(var i = 0; i < noteList.length; i++) {
+				var liNode = document.createElement("div");
+				liNode.setAttribute("noteid", noteList[i]['noteId']);
+				liNode.innerHTML ='<img src="images/fDRw8gm9XazHuqiccYQiyb.jpg" style="transform:translateY(90px);">'+
+                "&nbsp;&nbsp;&nbsp;"+'<div class="sticky0" style="">'+'<a href="##">匿名网友</a>'+'</div>' +'<div class="sticky2" style="">'+'<a href="##">分享</a>'+'</div>' +
+                 "<span class='sticky'>"+"&emsp;&emsp;&emsp;&nbsp;&emsp;"+ noteList[i]['noteContent'] +"<br/>"+"&emsp;&emsp;&emsp;&nbsp;&emsp;"+
+                    noteList[i]['Time']+"</span>"+"<span class='sticky1' style='margin-left:400px;'>"+'<a href="##">删除</a>'+"&nbsp;&nbsp;&nbsp;"
+                    +125+'<a href="##">👍</a>'+"&nbsp;&nbsp;&nbsp;"+ '<a href="##">回复</a>'+"</span>"+"<br/>"+"<br/>"+"<hr style='width:750px;border:0.2px dotted #DDD'/>";
+				stickies.appendChild(liNode);
+                counter1.innerHTML = noteList.length;
+			}
+		}
+		function clearContent(){
+			if(noteText.value != null){
+				noteText.value = '';
+   				}
+			}		
+		addBtn.onclick = function() {
+			if(noteText.value == "") {
+				alert("评论不能为空！");
+			}
+			else {
+				saveNote(noteText.value);
+				getNotes();
+				clearContent();
+                counter.innerHTML=0;
+			}
+		}
+		window.onload = function() {
+			getNotes();
+		}
+    var mymusic = document.getElementById("mymusic");
+    var playBtn = document.getElementById("wp_playBtn");
+    var prograssBar= document.getElementById("prograssBar");
+    var schedule_btn = document.getElementsByClassName("schedule_btn");
+    var wp_mute = document.getElementById("wp_mute");
+    var wp_playTime = document.getElementById("wp_playTime");
+    var onOff = true;
+    var soundOff = true;
+    var timer;
+    var totalTime;
+playBtn.onclick = function(){
+  if(onOff){
+    mymusic.play();
+    playTimes();
+    onOff = false;
+    this.style.backgroundPositionX = '-208px';
+    timer = setInterval(ProgressTime,1000);
+    totalTime = mymusic.duration;
+    // document.getElementById("disc").style.animation= "4s linear infinite img_rotate"; 
+  }else{
+    mymusic.pause();
+    onOff = true;
+    this.style.backgroundPositionX = '-110px';
+    clearInterval(timer);
+    // disc.style.animationPlayState = "paused";
+  }     
+}
+wp_mute.onclick = function(){
+  if(soundOff){
+    mymusic.muted = true;
+    soundOff = false;
+  }else{
+    mymusic.muted = false;
+    soundOff = true;
+  }
+}
+function ProgressTime(){
+  var n = mymusic.currentTime/totalTime;
+  schedule_btn[0].style.marginLeft = n * prograssBar.offsetWidth + 'px';
+  wp_bufBar.style.width = n * prograssBar.offsetWidth + 'px';  
+}
+function playTimes(){
+  timer2 = setInterval(function(){
+    var cur = parseInt(mymusic.currentTime);
+    var minute = parseInt(cur/60);
+    if (minute<10){
+      if(cur%60<10){
+        wp_playTime.innerHTML = "0"+minute+":0"+cur%60+"";
+      }else{
+        wp_playTime.innerHTML = "0"+minute+":"+cur%60+"";
+      }  
+    }else{
+      if(cur%60<10){
+        wp_playTime.innerText=minute+":0"+cur%60+" ";
+      }else{
+        wp_playTime.innerText=minute+":"+cur%60+"";
+      }
+    }        
+  },1000);
+}   
+</script>
+</html>
