@@ -200,6 +200,8 @@
         transform:rotate(360deg);
             }
         } 
+	 #disc{
+	animation:img_rotate 6s linear infinite ;
         .playerBottom{
             width:220px;
             height:70px;
@@ -593,13 +595,13 @@ playBtn.onclick = function(){
     this.style.backgroundPositionX = '-208px';
     timer = setInterval(ProgressTime,1000);
     totalTime = mymusic.duration;
-    document.getElementById("disc").style.animation= "4s linear infinite img_rotate"; 
+<!--     document.getElementById("disc").style.animation= "4s linear infinite img_rotate";  -->
   }else{
     mymusic.pause();
     onOff = true;
     this.style.backgroundPositionX = '-110px';
     clearInterval(timer);
-    disc.style.animationPlayState = "paused";
+<!--     disc.style.animationPlayState = "paused"; -->
   }     
 }
 wp_mute.onclick = function(){
